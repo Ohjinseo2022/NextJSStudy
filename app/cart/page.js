@@ -1,21 +1,28 @@
-"use client";
-
+// import age from "./data.js"; //export default 로 내보낸건 {} 불필요
+import { age, name } from "./data.js"; //여러개를 내보낸 곳에서 받아올땐 {} 사용
+import Hello from "./hello.js";
 export default function Cart() {
+  let product = [
+    { prd: "Tomatoes", price: 4000 },
+    { prd: "Pasta", price: 9000 },
+    { prd: "Coconut", price: 5000 },
+  ];
   return (
     <div>
+      <Hello />
       <h4 className="title">Cart</h4>
-      {[0, 1, 2, 3, 4, 5].map((e) => {
-        return <CartItem />;
+      {product.map((e) => {
+        return <CartItem prd={e.prd} price={e.price} />;
       })}
     </div>
   );
 }
 
-function CartItem() {
+function CartItem({ prd, price }) {
   return (
     <div className="cart-item">
-      <p>상품명</p>
-      <p>$40</p>
+      <p>상품명 {prd}</p>
+      <p>{price}</p>
       <p>1개</p>
     </div>
   );
