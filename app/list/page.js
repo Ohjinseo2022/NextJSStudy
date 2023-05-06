@@ -4,12 +4,16 @@
 // import food1 from "@/public/food1.png";
 // import food2 from "@/public/food2.png";
 
+"use client";
+import { useState } from "react";
 export default function List() {
   let product = [
     { prd: "Tomatoes", price: 4000 },
     { prd: "Pasta", price: 9000 },
     { prd: "Coconut", price: 5000 },
   ];
+  let [cnt, setCnt] = useState(0);
+  let arr = new Array(product.length);
 
   return (
     <div>
@@ -19,6 +23,23 @@ export default function List() {
           <div className="food" key={`prd=${idx}`}>
             <img src={`/food${idx}.png`} className="food-img" />
             <h4>{`${idx + 1}. ${e.prd} ${e.price}`}</h4>
+            <span> {cnt}</span>
+            <button
+              onClick={() => {
+                setCnt(cnt + 1);
+              }}
+            >
+              +
+            </button>
+            <button
+              onClick={() => {
+                if (cnt > 0) {
+                  setCnt(cnt - 1);
+                }
+              }}
+            >
+              -
+            </button>
           </div>
         );
       })}
