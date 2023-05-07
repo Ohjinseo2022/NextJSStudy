@@ -12,7 +12,7 @@ export default function List() {
     { prd: "Pasta", price: 9000 },
     { prd: "Coconut", price: 5000 },
   ];
-  let [cnt, setCnt] = useState(0);
+  let [cnt, setCnt] = useState([0, 0, 0]);
   let arr = new Array(product.length);
 
   return (
@@ -23,18 +23,22 @@ export default function List() {
           <div className="food" key={`prd=${idx}`}>
             <img src={`/food${idx}.png`} className="food-img" />
             <h4>{`${idx + 1}. ${e.prd} ${e.price}`}</h4>
-            <span> {cnt}</span>
+            <span> {cnt[idx]}</span>
             <button
               onClick={() => {
-                setCnt(cnt + 1);
+                let tmp = [...cnt];
+                tmp[idx]++;
+                setCnt(tmp);
               }}
             >
               +
             </button>
             <button
               onClick={() => {
-                if (cnt > 0) {
-                  setCnt(cnt - 1);
+                if (cnt[idx] > 0) {
+                  let tmp = [...cnt];
+                  tmp[idx]--;
+                  setCnt(tmp);
                 }
               }}
             >
